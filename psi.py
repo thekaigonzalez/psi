@@ -231,11 +231,12 @@ def parse_args(arg: str, optional_separator=" "):
 
         elif token == TOKEN_LIST and lexer.nposisstr() and lexer.depth == 0:
             lexer.clear_tmp()
+            previous_state = lexer.state
             lexer.update_state(STATE_LIST)
             lexer.update_tmp(token)
 
         elif token == TOKEN_RLIST and lexer.nposisstr() and lexer.depth == 0:
-            lexer.update_state(STATE_INIT)
+            lexer.update_state(previous_state)
             lexer.depth = -1
             lexer.update_tmp(token)
 
@@ -466,4 +467,4 @@ async def on_message(message: discord.Message):
             return
 
 
-client.run("MTA5NjYwNjAzNDM4ODMzNjY0MA.G6rqs9.fuaw4VKYNyzm0BW6Z-sZxd1CoDircwSzW0YOp0")
+client.run("MTA5NjYwNjAzNDM4ODMzNjY0MA.GwmGCI.ZLS_0DluSO5tkKMXgPvJ5R22XENu-6s3gl-LOk")
